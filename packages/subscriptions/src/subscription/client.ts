@@ -15,6 +15,7 @@ import {
   GQL_START,
   GQL_STOP,
   GRAPHQL_WS,
+  GRAPHQL_TS_WS,
 } from './protocol';
 
 export type OperationHandlerPayload = GQLResponse | 'start' | 'complete';
@@ -54,8 +55,8 @@ export interface ClientOptions {
   failedConnectionCallback?: (payload: unknown) => Promise<void>;
   failedReconnectCallback?: () => void;
   connectionInitPayload?:
-    | (() => Promise<Record<string, unknown>> | Record<string, unknown>)
-    | Record<string, unknown>;
+  | (() => Promise<Record<string, unknown>> | Record<string, unknown>)
+  | Record<string, unknown>;
 
   headers?: Record<string, string>;
   /**
@@ -135,7 +136,7 @@ export class Client {
   connect() {
     if (this.socket !== null) return;
 
-    this.socket = new WebSocket(this.uri, [GRAPHQL_WS], {
+    this.socket = new WebSocket(this.uri, [GRAPHQL_TS_WS], {
       headers: this.headers,
     });
     const readyPromise = (this.socketReady = createDeferredPromise());
@@ -165,7 +166,7 @@ export class Client {
       readyPromise.resolve(false);
     };
 
-    this.socket.onerror = () => {};
+    this.socket.onerror = () => { };
 
     this.socket.onmessage = async ({ data }) => {
       await this.handleMessage(data.toString('utf-8'));

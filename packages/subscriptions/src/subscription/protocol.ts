@@ -11,3 +11,4 @@ export const GQL_COMPLETE = 'complete'; // Server -> Client
 export const GQL_STOP = 'stop'; // Client -> Server
 
 export const GRAPHQL_WS = 'graphql-ws';
+export const GRAPHQL_TS_WS = 'graphql-transport-ws';

@@ -26,10 +26,10 @@ jobs:
           node-version: 16.x
 
       - name: install pnpm
-        run: npm i pnpm@latest -g
+        run: npm i pnpm@latest -g 
 
       - name: Install Dependencies
-        run: pnpm i --frozen-lockfile
+        run: pnpm i --no-frozen-lockfile
 
       - name: Test everything
         run: pnpm test

@@ -14,7 +14,6 @@ import {
   GQL_ERROR,
   GQL_START,
   GQL_STOP,
-  GRAPHQL_WS,
   GRAPHQL_TS_WS,
 } from './protocol';
 

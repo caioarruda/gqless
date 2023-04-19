@@ -258,7 +258,7 @@ const resolvers: IResolvers = {
 
       const hasNextPage = endCursor
         ? paginatedData.findIndex((v) => v.id === endCursor) + 1 <
-          paginatedData.length
+        paginatedData.length
         : false;
 
       const hasPreviousPage = startCursor
@@ -330,9 +330,14 @@ const resolvers: IResolvers = {
     async uploadFile(_root, { file }) {
       const newfile = await file;
 
-      const fileBuffer = await readStreamToBuffer(newfile.createReadStream());
-
-      return fileBuffer.toString('base64');
+      const fileBuffer = await new Promise((resolve, reject) => {
+        let data = '';
+        let stream = newfile.createReadStream();
+        stream.on("error", err => reject(err));
+        stream.on("data", chunk => data += chunk);
+        stream.on("end", () => resolve(new Buffer(data).toString('base64')));
+      });
+      return fileBuffer;
     },
   },
   Subscription: {

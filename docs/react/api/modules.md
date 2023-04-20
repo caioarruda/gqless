@@ -1,12 +1,12 @@
 ---
 id: 'modules'
-title: '@gqless/react'
+title: '@gqless-transport-ws/react'
 sidebar_label: 'Table of contents'
 custom_edit_url: null
 hide_title: true
 ---
 
-# @gqless/react
+# @gqless-transport-ws/react
 
 ## Table of contents
 

@@ -179,7 +179,7 @@ type DeepReadonly<T> = T extends (infer R)[]
   ? DeepReadonlyObject<T>
   : T;
 
-interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
+interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> { }
 
 type DeepReadonlyObject<T> = {
   readonly [P in keyof T]: DeepReadonly<T[P]>;
@@ -233,7 +233,7 @@ export const gqlessConfigPromise: Promise<{
                   defaultFilePath,
                   await format(`
                       /**
-                       * @type {import("@gqless/cli").GQlessConfig}
+                       * @type {import("@gqless-transport-ws/cli").GQlessConfig}
                        */
                       const config = ${JSON.stringify(config)};
                       

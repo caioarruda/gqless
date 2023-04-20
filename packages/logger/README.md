@@ -1,3 +1,3 @@
-# @gqless/logger
+# @gqless-transport-ws/logger
 
-## Visit [https://gqless.com/development/logger](https://gqless.com/development/logger)
+## Visit [https://c2atec.com/development/logger](https://c2atec.com/development/logger)

@@ -1,12 +1,12 @@
 <p align="center">
-  <a href="https://gqless.com">
+  <a href="https://c2atec.com">
     <img src="internal/website/static/img/logo.png" height="150" alt="gqless">
   </a>
 </p>
 
 <h2 align="center">
   a GraphQL client built for rapid iteration.
-  <a href="https://gqless.com">
+  <a href="https://c2atec.com">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-documentation?color=C00B84">
   </a>
   <a href="https://github.com/sponsors/samdenty">
@@ -17,13 +17,13 @@
   </a>
 </h2>
 
-<a href="https://gqless.com">
+<a href="https://c2atec.com">
   <img alt="Example usage" src="https://user-images.githubusercontent.com/13242392/112103674-fddc4980-8ba1-11eb-8c83-b527dcb0243d.PNG">
 </a>
 
 ---
 
-Head over to [gqless.com](https://gqless.com), to explore features and documentation.
+Head over to [gqless.com](https://c2atec.com), to explore features and documentation.
 
 ---
 

@@ -1,4 +1,4 @@
-# @gqless/cli
+# @gqless-transport-ws/cli
 
 ## 2.0.16
 

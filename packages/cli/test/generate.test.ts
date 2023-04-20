@@ -133,8 +133,8 @@ test('basic functionality works', async () => {
      * GQLESS: You can safely modify this file and Query Fetcher based on your needs
      */
 
-    import { createReactClient } from '@gqless/react';
-    import { createSubscriptionsClient } from '@gqless/subscriptions';
+    import { createReactClient } from '@gqless-transport-ws/react';
+    import { createSubscriptionsClient } from '@gqless-transport-ws/subscriptions';
     import { createClient, QueryFetcher } from 'gqless';
     import {
       generatedSchema,
@@ -299,7 +299,7 @@ test('custom scalars works', async () => {
      * GQLESS: You can safely modify this file and Query Fetcher based on your needs
      */
 
-    import { createReactClient } from '@gqless/react';
+    import { createReactClient } from '@gqless-transport-ws/react';
 
     import { createClient, QueryFetcher } from 'gqless';
     import {
@@ -1194,8 +1194,8 @@ test('javascript output works', async () => {
      * GQLESS: You can safely modify this file and Query Fetcher based on your needs
      */
 
-    import { createReactClient } from '@gqless/react';
-    import { createSubscriptionsClient } from '@gqless/subscriptions';
+    import { createReactClient } from '@gqless-transport-ws/react';
+    import { createSubscriptionsClient } from '@gqless-transport-ws/subscriptions';
     import { createClient } from 'gqless';
     import { generatedSchema, scalarsEnumsHash } from './schema.generated';
 
@@ -1253,7 +1253,7 @@ test('javascript output works', async () => {
     } = client;
 
     /**
-     * @type {import(\\"@gqless/react\\").ReactClient<import(\\"./schema.generated\\").GeneratedSchema>}
+     * @type {import(\\"@gqless-transport-ws/react\\").ReactClient<import(\\"./schema.generated\\").GeneratedSchema>}
      */
     const reactClient = createReactClient(client, {
       defaults: {
@@ -1492,7 +1492,7 @@ test('ignoreArgs transform', async () => {
      * GQLESS: You can safely modify this file and Query Fetcher based on your needs
      */
 
-    import { createReactClient } from '@gqless/react';
+    import { createReactClient } from '@gqless-transport-ws/react';
 
     import { createClient, QueryFetcher } from 'gqless';
     import {

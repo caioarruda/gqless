@@ -1,3 +1,3 @@
-# @gqless/cli
+# @gqless-transport-ws/cli
 
-## Visit [https://gqless.com/cli/codegen](https://gqless.com/cli/codegen)
+## Visit [https://c2atec.com/cli/codegen](https://c2atec.com/cli/codegen)

@@ -1,3 +1,3 @@
-# @gqless/react
+# @gqless-transport-ws/react
 
-## Visit [https://gqless.com/react/fetching-data](https://gqless.com/react/fetching-data)
+## Visit [https://c2atec.com/react/fetching-data](https://c2atec.com/react/fetching-data)

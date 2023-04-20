@@ -1,3 +1,3 @@
-# @gqless/subscription
+# @gqless-transport-ws/subscription
 
-## Visit [https://gqless.com/core/subscriptions](https://gqless.com/core/subscriptions)
+## Visit [https://c2atec.com/core/subscriptions](https://c2atec.com/core/subscriptions)

@@ -11,7 +11,7 @@ Install the following dependencies to your project:
 
 ```bash yarn2npm
 yarn add gqless
-yarn add -D @gqless/cli graphql
+yarn add -D @gqless-transport-ws/cli graphql
 ```
 
 ## Command
@@ -41,8 +41,8 @@ The CLI code generator comes with built in support for formatting code using [Pr
 By default with `react` & `subscriptions` turned on, the generated client files should look like this:
 
 ```ts
-import { createReactClient } from '@gqless/react';
-import { createSubscriptionsClient } from '@gqless/subscriptions';
+import { createReactClient } from '@gqless-transport-ws/react';
+import { createSubscriptionsClient } from '@gqless-transport-ws/subscriptions';
 import { createClient, QueryFetcher } from 'gqless';
 import {
   GeneratedSchema,

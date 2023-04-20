@@ -1,4 +1,4 @@
-# @gqless/subscriptions
+# @gqless-transport-ws/subscriptions
 
 ## 1.0.11
 

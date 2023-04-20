@@ -3,7 +3,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/caioarruda/gqless-transport-ws.git"
+    "url": "https://github.com/caioarruda/gqless.git"
   },
   "license": "MIT",
   "type": "module",

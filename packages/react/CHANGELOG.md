@@ -1,4 +1,4 @@
-# @gqless/react
+# @gqless-transport-ws/react
 
 ## 2.0.15
 

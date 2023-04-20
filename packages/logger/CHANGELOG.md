@@ -1,4 +1,4 @@
-# @gqless/logger
+# @gqless-transport-ws/logger
 
 ## 2.0.11
 

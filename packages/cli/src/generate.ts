@@ -202,9 +202,9 @@ export async function generate(
     if (Array.isArray(typeName)) {
       const data = typeName[2]
         ? /* istanbul ignore next */
-          fieldsArgsDescriptions.get(typeName[0])?.[typeName[1]]?.[typeName[2]]
+        fieldsArgsDescriptions.get(typeName[0])?.[typeName[1]]?.[typeName[2]]
         : /* istanbul ignore next */
-          fieldsDescriptions.get(typeName[0])?.[typeName[1]];
+        fieldsDescriptions.get(typeName[0])?.[typeName[1]];
 
       let comment = '';
 
@@ -607,65 +607,64 @@ export async function generate(
 
       acum += `
 
-      ${addDescription(typeName)}export interface ${typeName} ${
-        objectTypeInterfaces
+      ${addDescription(typeName)}export interface ${typeName} ${objectTypeInterfaces
           ? 'extends ' +
-            objectTypeInterfaces
-              .map((v) => `Omit<${v}, "__typename">`)
-              .join(', ')
+          objectTypeInterfaces
+            .map((v) => `Omit<${v}, "__typename">`)
+            .join(', ')
           : ''
-      }{ 
+        }{ 
         __typename: "${typeName}" | undefined; ${Object.entries(
-        typeValue
-      ).reduce((acum, [fieldKey, fieldValue]) => {
-        if (fieldKey === '__typename') {
-          objectTypeMap.set(fieldKey, `: "${typeName}" | undefined`);
+          typeValue
+        ).reduce((acum, [fieldKey, fieldValue]) => {
+          if (fieldKey === '__typename') {
+            objectTypeMap.set(fieldKey, `: "${typeName}" | undefined`);
+            return acum;
+          }
+
+          const fieldValueProps = parseSchemaType(fieldValue.__type);
+          const typeToReturn = parseFinalType(fieldValueProps);
+          let finalType: string;
+          if (fieldValue.__args) {
+            const argsEntries = Object.entries(fieldValue.__args);
+            let onlyNullableArgs = true;
+            const argTypes = argsEntries.reduce(
+              (acum, [argKey, argValue], index) => {
+                const argValueProps = parseSchemaType(argValue);
+                const connector = argValueProps.isNullable ? '?:' : ':';
+
+                if (!argValueProps.isNullable) {
+                  onlyNullableArgs = false;
+                }
+
+                const argTypeValue = parseArgType(argValueProps);
+
+                acum += `${addDescription([
+                  typeName,
+                  fieldKey,
+                  argKey,
+                ])}${argKey}${connector} ${argTypeValue}`;
+                if (index < argsEntries.length - 1) {
+                  acum += '; ';
+                }
+                return acum;
+              },
+              ''
+            );
+            const argsConnector = onlyNullableArgs ? '?:' : ':';
+            finalType = `: (args${argsConnector} {${argTypes}}) => ${typeToReturn}`;
+          } else {
+            const connector = fieldValueProps.isNullable ? '?:' : ':';
+            finalType = `${connector} ${typeToReturn}`;
+          }
+
+          objectTypeMap.set(fieldKey, finalType);
+
+          acum +=
+            '\n' + addDescription([typeName, fieldKey]) + fieldKey + finalType;
+
           return acum;
-        }
-
-        const fieldValueProps = parseSchemaType(fieldValue.__type);
-        const typeToReturn = parseFinalType(fieldValueProps);
-        let finalType: string;
-        if (fieldValue.__args) {
-          const argsEntries = Object.entries(fieldValue.__args);
-          let onlyNullableArgs = true;
-          const argTypes = argsEntries.reduce(
-            (acum, [argKey, argValue], index) => {
-              const argValueProps = parseSchemaType(argValue);
-              const connector = argValueProps.isNullable ? '?:' : ':';
-
-              if (!argValueProps.isNullable) {
-                onlyNullableArgs = false;
-              }
-
-              const argTypeValue = parseArgType(argValueProps);
-
-              acum += `${addDescription([
-                typeName,
-                fieldKey,
-                argKey,
-              ])}${argKey}${connector} ${argTypeValue}`;
-              if (index < argsEntries.length - 1) {
-                acum += '; ';
-              }
-              return acum;
-            },
-            ''
-          );
-          const argsConnector = onlyNullableArgs ? '?:' : ':';
-          finalType = `: (args${argsConnector} {${argTypes}}) => ${typeToReturn}`;
-        } else {
-          const connector = fieldValueProps.isNullable ? '?:' : ':';
-          finalType = `${connector} ${typeToReturn}`;
-        }
-
-        objectTypeMap.set(fieldKey, finalType);
-
-        acum +=
-          '\n' + addDescription([typeName, fieldKey]) + fieldKey + finalType;
-
-        return acum;
-      }, '')}
+        }, '')}
       }
       `;
 
@@ -679,13 +678,13 @@ export async function generate(
   typescriptTypes += `
   export interface SchemaObjectTypes {
     ${objectTypesEntries.reduce((acum, [typeName]) => {
-      acum += `${typeName}:${typeName};`;
-      return acum;
-    }, '')}
+    acum += `${typeName}:${typeName};`;
+    return acum;
+  }, '')}
   }
   export type SchemaObjectTypesNames = ${objectTypesEntries
-    .map(([key]) => `"${key}"`)
-    .join(' | ')};
+      .map(([key]) => `"${key}"`)
+      .join(' | ')};
   `;
 
   if (unionsMap.size) {
@@ -701,8 +700,7 @@ export async function generate(
       });
       const allUnionFieldsArray = Array.from(allUnionFields).sort();
 
-      acum += `${addDescription(unionName)}export type ${unionName} = ${
-        types
+      acum += `${addDescription(unionName)}export type ${unionName} = ${types
           .reduce((acumTypes, typeName) => {
             const typeMap = objectTypeTSTypes.get(typeName);
 
@@ -724,7 +722,7 @@ export async function generate(
             return acumTypes;
           }, [] as string[])
           .join(' | ') /* istanbul ignore next */ || '{}'
-      };`;
+        };`;
 
       return acum;
     }, '')}
@@ -804,9 +802,9 @@ export async function generate(
   
     export interface ScalarsEnums extends MakeNullable<Scalars> {
       ${enumsNames.reduce((acum, enumName) => {
-        acum += `${enumName}: ${enumName} | undefined;`;
-        return acum;
-      }, '')}
+    acum += `${enumName}: ${enumName} | undefined;`;
+    return acum;
+  }, '')}
     }
     `;
 
@@ -815,10 +813,9 @@ export async function generate(
   }
 
   const queryFetcher = `
-    ${
-      isJavascriptOutput
-        ? typeDoc('import("gqless").QueryFetcher') + 'const queryFetcher'
-        : 'const queryFetcher : QueryFetcher'
+    ${isJavascriptOutput
+      ? typeDoc('import("gqless").QueryFetcher') + 'const queryFetcher'
+      : 'const queryFetcher : QueryFetcher'
     } = async function (query, variables) {
         // Modify "${endpoint}" if needed
         const response = await fetch("${endpoint}", {
@@ -848,8 +845,8 @@ export async function generate(
 ${hasUnions ? 'import { SchemaUnionsKey } from "gqless";' : ''}
 
 ${typeDoc(
-  'import("gqless").ScalarsEnumsHash'
-)}export const scalarsEnumsHash = ${JSON.stringify(scalarsEnumsHash)};
+    'import("gqless").ScalarsEnumsHash'
+  )}export const scalarsEnumsHash = ${JSON.stringify(scalarsEnumsHash)};
 
 export const generatedSchema = {${Object.entries(generatedSchema).reduceRight(
     (acum, [key, value]) => {
@@ -870,13 +867,10 @@ export const generatedSchema = {${Object.entries(generatedSchema).reduceRight(
 
   ${await codegenResultPromise}
 
-  export${
-    isJavascriptOutput ? ' declare' : ''
-  } const scalarsEnumsHash: import("gqless").ScalarsEnumsHash${
-      isJavascriptOutput ? ';' : ` = ${JSON.stringify(scalarsEnumsHash)};`
+  export${isJavascriptOutput ? ' declare' : ''
+    } const scalarsEnumsHash: import("gqless").ScalarsEnumsHash${isJavascriptOutput ? ';' : ` = ${JSON.stringify(scalarsEnumsHash)};`
     }
-  export${isJavascriptOutput ? ' declare' : ''} const generatedSchema ${
-      isJavascriptOutput ? ':' : '='
+  export${isJavascriptOutput ? ' declare' : ''} const generatedSchema ${isJavascriptOutput ? ':' : '='
     } {${Object.entries(generatedSchema).reduceRight(
       (acum, [key, value]) => {
         return `${JSON.stringify(key)}:${JSON.stringify(value)}, ${acum}`;
@@ -893,7 +887,7 @@ export const generatedSchema = {${Object.entries(generatedSchema).reduceRight(
     if (isJavascriptOutput) {
       reactClientCode = `
       ${typeDoc(
-        'import("@gqless/react").ReactClient<import("./schema.generated").GeneratedSchema>'
+        'import("@gqless-transport-ws/react").ReactClient<import("./schema.generated").GeneratedSchema>'
       )}const reactClient = createReactClient(client, {
         defaults: {
           // Set this flag as "true" if your usage involves React Suspense
@@ -952,25 +946,21 @@ export const generatedSchema = {${Object.entries(generatedSchema).reduceRight(
  * GQLESS: You can safely modify this file and Query Fetcher based on your needs
  */
 
-  ${react ? `import { createReactClient } from "@gqless/react"` : ''}
-  ${
-    subscriptions
-      ? `import { createSubscriptionsClient } from "@gqless/subscriptions"`
+  ${react ? `import { createReactClient } from "@gqless-transport-ws/react"` : ''}
+  ${subscriptions
+      ? `import { createSubscriptionsClient } from "@gqless-transport-ws/subscriptions"`
       : ''
-  }
-  import { createClient${
-    isJavascriptOutput ? '' : ', QueryFetcher'
-  } } from "gqless";
-  import { generatedSchema, scalarsEnumsHash${
-    isJavascriptOutput
+    }
+  import { createClient${isJavascriptOutput ? '' : ', QueryFetcher'
+    } } from "gqless";
+  import { generatedSchema, scalarsEnumsHash${isJavascriptOutput
       ? ''
       : ', GeneratedSchema, SchemaObjectTypes, SchemaObjectTypesNames'
-  } } from "./schema.generated";
+    } } from "./schema.generated";
 
   ${queryFetcher}
 
-  ${
-    subscriptions
+  ${subscriptions
       ? `
   const subscriptionsClient = 
   typeof window !== "undefined" ?
@@ -984,13 +974,12 @@ export const generatedSchema = {${Object.entries(generatedSchema).reduceRight(
   }) : undefined;
   `
       : ''
-  }
+    }
 
-  ${
-    isJavascriptOutput
+  ${isJavascriptOutput
       ? `${typeDoc(
-          'import("gqless").GQlessClient<import("./schema.generated").GeneratedSchema>'
-        )}export const client = createClient({
+        'import("gqless").GQlessClient<import("./schema.generated").GeneratedSchema>'
+      )}export const client = createClient({
         schema: generatedSchema,
         scalarsEnumsHash, 
         queryFetcher
@@ -1002,7 +991,7 @@ export const generatedSchema = {${Object.entries(generatedSchema).reduceRight(
     queryFetcher
     ${subscriptions ? ', subscriptionsClient' : ''}
   });`
-  }
+    }
   
 
   export const { query, mutation, mutate, subscription, resolved, refetch } = client;

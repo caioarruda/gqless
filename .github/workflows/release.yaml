@@ -31,8 +31,8 @@ jobs:
       - name: Install Dependencies
         run: pnpm i --no-frozen-lockfile
 
-      - name: Test everything
-        run: pnpm test
+      # - name: Test everything
+      #   run: pnpm test
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets

@@ -1,11 +1,11 @@
 {
-  "name": "gqless",
+  "name": "@gqless-transport-ws/gqless",
   "version": "2.0.14",
   "description": "gqless client without queries",
   "homepage": "https://c2atec.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/caioarruda/gqless.git"
+    "url": "git+https://github.com/caioarruda/gqless.git"
   },
   "license": "MIT",
   "author": "GQless <opensource@gqless.com>",
@@ -89,5 +89,12 @@
       "path": "dist/gqless.esm.js",
       "limit": "20 KB"
     }
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/caioarruda/gqless/issues"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
 }

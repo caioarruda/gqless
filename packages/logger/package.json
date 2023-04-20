@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/caioarruda/gqless.git"
+    "url": "git+https://github.com/caioarruda/gqless.git"
   },
   "author": "GQless <opensource@gqless.com>",
   "main": "dist/index.js",
@@ -56,5 +56,13 @@
       "path": "dist/gqless-logger.esm.js",
       "limit": "260 KB"
     }
-  ]
+  ],
+  "description": "## Visit [https://c2atec.com/development/logger](https://c2atec.com/development/logger)",
+  "bugs": {
+    "url": "https://github.com/caioarruda/gqless/issues"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
 }

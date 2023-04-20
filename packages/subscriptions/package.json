@@ -4,7 +4,7 @@
   "homepage": "https://c2atec.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/caioarruda/gqless.git"
+    "url": "git+https://github.com/caioarruda/gqless.git"
   },
   "author": "GQless <opensource@gqless.com>",
   "main": "dist/index.js",
@@ -42,5 +42,14 @@
     "graphql": {
       "optional": true
     }
-  }
+  },
+  "description": "## Visit [https://c2atec.com/core/subscriptions](https://c2atec.com/core/subscriptions)",
+  "bugs": {
+    "url": "https://github.com/caioarruda/gqless/issues"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [],
+  "license": "ISC"
 }

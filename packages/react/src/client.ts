@@ -23,7 +23,7 @@ import {
   UseSubscription,
 } from './subscription/useSubscription';
 
-import type { RetryOptions, GQlessClient } from 'gqless';
+import type { RetryOptions, GQlessClient } from '@gqless-transport-ws/gqless';
 import type { FetchPolicy } from './common';
 import type { ReactClientOptionsWithDefaults } from './utils';
 import {

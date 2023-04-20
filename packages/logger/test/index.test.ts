@@ -1,4 +1,4 @@
-import { createClient } from 'gqless';
+import { createClient } from '@gqless-transport-ws/gqless';
 import { createTestApp, gql } from 'test-utils';
 
 import { createLogger } from '../src';
@@ -85,7 +85,7 @@ describe('logger', () => {
         return gqlessClient.query.throw;
       });
 
-      await errorPromise.catch(() => {});
+      await errorPromise.catch(() => { });
 
       expect(spyGroupCollapsed).toBeCalledTimes(4);
 
@@ -147,7 +147,7 @@ describe('logger', () => {
         }
       );
 
-      await errorPromise.catch(() => {});
+      await errorPromise.catch(() => { });
 
       expect(spyGroupCollapsed).toBeCalledTimes(2);
 
@@ -208,7 +208,7 @@ describe('logger', () => {
         }
       );
 
-      await errorPromise.catch(() => {});
+      await errorPromise.catch(() => { });
 
       expect(spyGroupCollapsed).toBeCalledTimes(4);
 

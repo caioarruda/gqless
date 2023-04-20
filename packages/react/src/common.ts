@@ -5,13 +5,13 @@ import {
   selectFields,
   castNotSkeleton,
   castNotSkeletonDeep,
-} from 'gqless';
+} from '@gqless-transport-ws/gqless';
 import {
   BuildSelectionInput,
   GQlessError,
   ResolveOptions,
   Selection,
-} from 'gqless';
+} from '@gqless-transport-ws/gqless';
 import { ProxyAccessor } from 'gqless/dist/Cache';
 import { EventHandler } from 'gqless/dist/Events';
 import { InterceptorManager } from 'gqless/dist/Interceptor';
@@ -327,7 +327,7 @@ export function useSubscribeCacheChanges({
           () => {
             if (isMounted) Promise.resolve(fetchPromise).then(onChange);
           },
-          () => {}
+          () => { }
         );
       }
     );

@@ -1,4 +1,4 @@
-import { doRetry, GQlessClient, GQlessError, RetryOptions } from 'gqless';
+import { doRetry, GQlessClient, GQlessError, RetryOptions } from '@gqless-transport-ws/gqless';
 import { Dispatch, useCallback, useMemo, useReducer, useRef } from 'react';
 
 import {
@@ -91,19 +91,19 @@ export interface UseLazyQuery<
     (
       ...opts: undefined extends TArgs
         ? [
-            {
-              fn?: (query: GeneratedSchema['query'], args: TArgs) => TData;
-              args?: TArgs;
-              fetchPolicy?: LazyFetchPolicy;
-            }?
-          ]
+          {
+            fn?: (query: GeneratedSchema['query'], args: TArgs) => TData;
+            args?: TArgs;
+            fetchPolicy?: LazyFetchPolicy;
+          }?
+        ]
         : [
-            {
-              fn?: (query: GeneratedSchema['query'], args: TArgs) => TData;
-              args: TArgs;
-              fetchPolicy?: LazyFetchPolicy;
-            }
-          ]
+          {
+            fn?: (query: GeneratedSchema['query'], args: TArgs) => TData;
+            args: TArgs;
+            fetchPolicy?: LazyFetchPolicy;
+          }
+        ]
     ) => Promise<TData>,
     UseLazyQueryState<TData>
   ];
@@ -183,8 +183,8 @@ export function createUseLazyQuery<
         const functionResolve = fnArg
           ? () => fnArg(clientQuery, args)
           : refFn
-          ? () => refFn(clientQuery, args)
-          : (() => {
+            ? () => refFn(clientQuery, args)
+            : (() => {
               throw new GQlessError(
                 'You have to specify a function to be resolved',
                 {
@@ -240,31 +240,31 @@ export function createUseLazyQuery<
     return useMemo(() => {
       const fn: typeof queryFn = retry
         ? (...args) => {
-            const promise = queryFn(...args).catch((err) => {
-              doRetry(retry, {
-                onRetry: () => {
-                  const promise = queryFn(...args).then(() => {});
+          const promise = queryFn(...args).catch((err) => {
+            doRetry(retry, {
+              onRetry: () => {
+                const promise = queryFn(...args).then(() => { });
 
-                  setSuspensePromise(promise);
+                setSuspensePromise(promise);
 
-                  return promise;
-                },
-              });
-
-              throw err;
+                return promise;
+              },
             });
 
-            setSuspensePromise(promise);
+            throw err;
+          });
 
-            return promise;
-          }
+          setSuspensePromise(promise);
+
+          return promise;
+        }
         : (...args: any[]) => {
-            const promise = queryFn(...args);
+          const promise = queryFn(...args);
 
-            setSuspensePromise(promise);
+          setSuspensePromise(promise);
 
-            return promise;
-          };
+          return promise;
+        };
 
       return [fn, state];
     }, [state, queryFn, retry, optsRef, setSuspensePromise]);

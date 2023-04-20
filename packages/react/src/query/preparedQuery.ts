@@ -1,4 +1,4 @@
-import type { GQlessClient, GQlessError } from 'gqless';
+import type { GQlessClient, GQlessError } from '@gqless-transport-ws/gqless';
 import type { SchedulerPromiseValue } from 'gqless/dist/Scheduler';
 
 import {
@@ -82,8 +82,8 @@ export function createPrepareQuery<
 
     let promiseOnTheFly:
       | (Promise<ReturnType<TFunction>> & {
-          schedulerPromise: Promise<SchedulerPromiseValue>;
-        })
+        schedulerPromise: Promise<SchedulerPromiseValue>;
+      })
       | undefined;
 
     const subscribers = new Set<() => void>();

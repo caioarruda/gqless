@@ -54,7 +54,7 @@ test('basic inspectWriteGenerate functionality', async () => {
 
       import { createReactClient } from '@gqless-transport-ws/react';
 
-      import { createClient, QueryFetcher } from 'gqless';
+      import { createClient, QueryFetcher } from '@gqless-transport-ws/gqless';
       import {
         generatedSchema,
         scalarsEnumsHash,
@@ -242,7 +242,7 @@ describe('from file', () => {
 
         import { createReactClient } from '@gqless-transport-ws/react';
 
-        import { createClient, QueryFetcher } from 'gqless';
+        import { createClient, QueryFetcher } from '@gqless-transport-ws/gqless';
         import {
           generatedSchema,
           scalarsEnumsHash,
@@ -427,7 +427,7 @@ describe('from file', () => {
 
         import { createReactClient } from '@gqless-transport-ws/react';
 
-        import { createClient, QueryFetcher } from 'gqless';
+        import { createClient, QueryFetcher } from '@gqless-transport-ws/gqless';
         import {
           generatedSchema,
           scalarsEnumsHash,
@@ -611,7 +611,7 @@ describe('from file', () => {
 
         import { createReactClient } from '@gqless-transport-ws/react';
 
-        import { createClient, QueryFetcher } from 'gqless';
+        import { createClient, QueryFetcher } from '@gqless-transport-ws/gqless';
         import {
           generatedSchema,
           scalarsEnumsHash,
@@ -832,7 +832,7 @@ test('specify generateOptions to inspectWriteGenerate', async () => {
 
       import { createReactClient } from '@gqless-transport-ws/react';
 
-      import { createClient, QueryFetcher } from 'gqless';
+      import { createClient, QueryFetcher } from '@gqless-transport-ws/gqless';
       import {
         generatedSchema,
         scalarsEnumsHash,
@@ -1178,7 +1178,7 @@ describe('CLI behavior', () => {
 
         import { createReactClient } from '@gqless-transport-ws/react';
 
-        import { createClient, QueryFetcher } from 'gqless';
+        import { createClient, QueryFetcher } from '@gqless-transport-ws/gqless';
         import {
           generatedSchema,
           scalarsEnumsHash,

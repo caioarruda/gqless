@@ -4,7 +4,7 @@ import {
   Schema,
   SchemaUnionsKey,
   Type,
-} from 'gqless';
+} from '@gqless-transport-ws/gqless';
 import {
   GraphQLEnumType,
   GraphQLField,
@@ -701,27 +701,27 @@ export async function generate(
       const allUnionFieldsArray = Array.from(allUnionFields).sort();
 
       acum += `${addDescription(unionName)}export type ${unionName} = ${types
-          .reduce((acumTypes, typeName) => {
-            const typeMap = objectTypeTSTypes.get(typeName);
+        .reduce((acumTypes, typeName) => {
+          const typeMap = objectTypeTSTypes.get(typeName);
 
-            /* istanbul ignore else */
-            if (typeMap) {
-              acumTypes.push(
-                `{ ${allUnionFieldsArray
-                  .map((fieldName) => {
-                    const foundType = typeMap.get(fieldName);
+          /* istanbul ignore else */
+          if (typeMap) {
+            acumTypes.push(
+              `{ ${allUnionFieldsArray
+                .map((fieldName) => {
+                  const foundType = typeMap.get(fieldName);
 
-                    return `${addDescription([
-                      typeName,
-                      fieldName,
-                    ])}${fieldName}${foundType || '?: undefined'}\n`;
-                  })
-                  .join('')} }`
-              );
-            }
-            return acumTypes;
-          }, [] as string[])
-          .join(' | ') /* istanbul ignore next */ || '{}'
+                  return `${addDescription([
+                    typeName,
+                    fieldName,
+                  ])}${fieldName}${foundType || '?: undefined'}\n`;
+                })
+                .join('')} }`
+            );
+          }
+          return acumTypes;
+        }, [] as string[])
+        .join(' | ') /* istanbul ignore next */ || '{}'
         };`;
 
       return acum;

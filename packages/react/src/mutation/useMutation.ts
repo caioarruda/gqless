@@ -1,4 +1,4 @@
-import { doRetry, GQlessClient, GQlessError, RetryOptions } from 'gqless';
+import { doRetry, GQlessClient, GQlessError, RetryOptions } from '@gqless-transport-ws/gqless';
 import { Dispatch, useCallback, useMemo, useReducer, useRef } from 'react';
 
 import {
@@ -99,23 +99,23 @@ export interface UseMutation<
     (
       ...opts: undefined extends TArgs
         ? [
-            {
-              fn?: (
-                mutation: GeneratedSchema['mutation'],
-                args: TArgs
-              ) => TData;
-              args?: TArgs;
-            }?
-          ]
+          {
+            fn?: (
+              mutation: GeneratedSchema['mutation'],
+              args: TArgs
+            ) => TData;
+            args?: TArgs;
+          }?
+        ]
         : [
-            {
-              fn?: (
-                mutation: GeneratedSchema['mutation'],
-                args: TArgs
-              ) => TData;
-              args: TArgs;
-            }
-          ]
+          {
+            fn?: (
+              mutation: GeneratedSchema['mutation'],
+              args: TArgs
+            ) => TData;
+            args: TArgs;
+          }
+        ]
     ) => Promise<TData>,
     UseMutationState<TData>
   ];
@@ -197,8 +197,8 @@ export function createUseMutation<
         const functionResolve = fnArg
           ? () => fnArg(clientMutation, args)
           : refFn
-          ? () => refFn(clientMutation, args)
-          : (() => {
+            ? () => refFn(clientMutation, args)
+            : (() => {
               throw new GQlessError(
                 'You have to specify a function to be resolved',
                 {
@@ -244,24 +244,24 @@ export function createUseMutation<
     return useMemo(() => {
       const fn: typeof mutate = retry
         ? (...args: any[]) => {
-            const promise = mutate(...args).catch((err) => {
-              doRetry(retry, {
-                onRetry: () => {
-                  const promise = mutate(...args).then(() => {});
+          const promise = mutate(...args).catch((err) => {
+            doRetry(retry, {
+              onRetry: () => {
+                const promise = mutate(...args).then(() => { });
 
-                  setSuspensePromise(promise);
+                setSuspensePromise(promise);
 
-                  return promise;
-                },
-              });
-
-              throw err;
+                return promise;
+              },
             });
 
-            setSuspensePromise(promise);
+            throw err;
+          });
 
-            return promise;
-          }
+          setSuspensePromise(promise);
+
+          return promise;
+        }
         : mutate;
 
       return [fn, state];

@@ -1,4 +1,4 @@
-import type { GQlessClient } from 'gqless';
+import type { GQlessClient } from '@gqless-transport-ws/gqless';
 import { Dispatch, useCallback, useMemo, useReducer, useRef } from 'react';
 
 import {
@@ -106,16 +106,16 @@ interface UsePaginatedQueryState<TData, TArgs> {
 
 type UsePaginatedQueryReducerAction<TData> =
   | {
-      type: 'loading';
-    }
+    type: 'loading';
+  }
   | {
-      type: 'cache_found';
-      payload: TData;
-    }
+    type: 'cache_found';
+    payload: TData;
+  }
   | {
-      type: 'data';
-      payload: TData;
-    };
+    type: 'data';
+    payload: TData;
+  };
 
 function UsePaginatedQueryReducer<TData, TArgs>(
   state: UsePaginatedQueryState<TData, TArgs>,
@@ -224,9 +224,9 @@ export function createUsePaginatedQuery<
       opts,
       InitUsePaginatedQueryReducer
     ) as [
-      UsePaginatedQueryState<TData, TArgs>,
-      Dispatch<UsePaginatedQueryReducerAction<TData>>
-    ];
+        UsePaginatedQueryState<TData, TArgs>,
+        Dispatch<UsePaginatedQueryReducerAction<TData>>
+      ];
 
     const hookSelections = useSelectionsState();
 
@@ -272,11 +272,11 @@ export function createUsePaginatedQuery<
           newArgs !== undefined
             ? typeof newArgs === 'function'
               ? (stateRef.current.args = (newArgs as (
-                  data: FetchMoreCallbackArgs<TData, TArgs>
-                ) => TArgs)({
-                  existingData: stateRef.current.data,
-                  existingArgs: stateRef.current.args,
-                }))
+                data: FetchMoreCallbackArgs<TData, TArgs>
+              ) => TArgs)({
+                existingData: stateRef.current.data,
+                existingArgs: stateRef.current.args,
+              }))
               : (stateRef.current.args = newArgs)
             : stateRef.current.args;
 

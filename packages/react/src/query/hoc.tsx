@@ -3,14 +3,14 @@ import React, { ReactElement, Suspense, SuspenseProps } from 'react';
 import { OnErrorHandler, useInterceptSelections } from '../common';
 import { ReactClientOptionsWithDefaults } from '../utils';
 
-import type { GQlessClient } from 'gqless';
+import type { GQlessClient } from '@gqless-transport-ws/gqless';
 
 export interface GraphQLHOCOptions {
   suspense?:
-    | boolean
-    | {
-        fallback: SuspenseProps['fallback'];
-      };
+  | boolean
+  | {
+    fallback: SuspenseProps['fallback'];
+  };
   staleWhileRevalidate?: boolean;
   onError?: OnErrorHandler;
 }
@@ -79,9 +79,8 @@ export function createGraphqlHOC(
       }
       return returnValue;
     };
-    withGraphQL.displayName = `GraphQLComponent(${
-      component?.displayName || component?.name || 'Anonymous'
-    })${Date.now}`;
+    withGraphQL.displayName = `GraphQLComponent(${component?.displayName || component?.name || 'Anonymous'
+      })${Date.now}`;
 
     return withGraphQL;
   };

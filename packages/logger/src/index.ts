@@ -3,7 +3,7 @@ import parserGraphQL from 'prettier/parser-graphql';
 import prettier from 'prettier/standalone';
 import { serializeError } from 'serialize-error';
 
-import type { GQlessClient } from 'gqless';
+import type { GQlessClient } from '@gqless-transport-ws/gqless';
 import type { FetchEventData } from 'gqless/dist/Events';
 
 function parseGraphQL(query: string) {

@@ -4,7 +4,7 @@ import {
   GQlessError,
   ResolveOptions,
   RetryOptions,
-} from 'gqless';
+} from '@gqless-transport-ws/gqless';
 import {
   Dispatch,
   useCallback,
@@ -39,8 +39,8 @@ type UseTransactionQueryReducerAction<TData> =
   | { type: 'failure'; error: GQlessError }
   | { type: 'loading' }
   | {
-      type: 'done';
-    };
+    type: 'done';
+  };
 
 function UseTransactionQueryReducer<TData>(
   state: UseTransactionQueryState<TData>,
@@ -188,9 +188,9 @@ export function createUseTransactionQuery<
       opts,
       InitUseTransactionQueryReducer
     ) as [
-      UseTransactionQueryState<TData>,
-      Dispatch<UseTransactionQueryReducerAction<TData>>
-    ];
+        UseTransactionQueryState<TData>,
+        Dispatch<UseTransactionQueryReducerAction<TData>>
+      ];
     const dispatch = useDeferDispatch(dispatchReducer);
 
     const stateRef = useRef(state);

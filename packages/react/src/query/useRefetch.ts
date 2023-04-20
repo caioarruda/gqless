@@ -5,7 +5,7 @@ import {
   RetryOptions,
   Selection,
   SelectionType,
-} from 'gqless';
+} from '@gqless-transport-ws/gqless';
 import { useCallback, useMemo, useReducer, useRef, useState } from 'react';
 
 import { useIsomorphicLayoutEffect, useLazyRef } from '../common';
@@ -22,15 +22,15 @@ interface UseRefetchReducerState {
 
 type UseRefetchReducerAction =
   | {
-      type: 'loading';
-    }
+    type: 'loading';
+  }
   | {
-      type: 'done';
-    }
+    type: 'done';
+  }
   | {
-      type: 'error';
-      error: GQlessError;
-    };
+    type: 'error';
+    error: GQlessError;
+  };
 
 function UseRefetchReducer(
   state: UseRefetchReducerState,
@@ -224,13 +224,13 @@ export function createUseRefetch(
       const returnValue: ReturnType<UseRefetch> = Object.assign(
         retry
           ? (...args: any[]) => {
-              return fn(...args).catch((err) => {
-                doRetry(retry, {
-                  onRetry: () => fn(...args),
-                });
-                throw err;
+            return fn(...args).catch((err) => {
+              doRetry(retry, {
+                onRetry: () => fn(...args),
               });
-            }
+              throw err;
+            });
+          }
           : fn,
         state
       );

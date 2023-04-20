@@ -3,7 +3,7 @@ import {
   Selection,
   SubscribeEvents,
   SubscriptionsClient,
-} from 'gqless';
+} from '@gqless-transport-ws/gqless';
 
 import {
   Client,

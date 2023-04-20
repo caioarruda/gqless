@@ -68,5 +68,8 @@
       "esbuild": "^0.11.12",
       "@types/node": "^14.14.41"
     }
+  },
+  "publishConfig": {
+    "@gqless-transport-ws:registry": " https://registry.npmjs.org"
   }
 }

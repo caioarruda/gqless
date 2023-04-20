@@ -1,5 +1,5 @@
 {
-  "name": "@gqless-transport-ws",
+  "name": "gqless_monorepo",
   "private": true,
   "repository": {
     "type": "git",
@@ -70,6 +70,6 @@
     }
   },
   "publishConfig": {
-    "@gqless-transport-ws:registry": " https://registry.npmjs.org"
+    "@c2atec:registry": " https://registry.npmjs.org"
   }
 }

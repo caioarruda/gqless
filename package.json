@@ -1,5 +1,5 @@
 {
-  "name": "gqless_monorepo",
+  "name": "@gqless-transport-ws",
   "private": true,
   "repository": {
     "type": "git",

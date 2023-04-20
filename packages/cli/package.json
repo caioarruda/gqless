@@ -4,7 +4,7 @@
   "homepage": "https://c2atec.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caioarruda/gqless.git"
+    "url": "https://github.com/caioarruda/gqless.git"
   },
   "license": "MIT",
   "author": "GQless <opensource@gqless.com>",
@@ -38,7 +38,7 @@
     "commander": "^7.2.0",
     "cosmiconfig": "^7.0.0",
     "cross-fetch": "^3.1.4",
-    "gqless-transport-ws": "workspace:^2.0.14",
+    "gqless": "workspace:^2.0.14",
     "mkdirp": "^1.0.4",
     "prettier": "^2.2.1"
   },
@@ -77,12 +77,5 @@
       "path": "dist/gqless-cli.esm.js",
       "limit": "10 KB"
     }
-  ],
-  "description": "## Visit [https://c2atec.com/cli/codegen](https://c2atec.com/cli/codegen)",
-  "bugs": {
-    "url": "https://github.com/caioarruda/gqless/issues"
-  },
-  "directories": {
-    "test": "test"
-  }
+  ]
 }

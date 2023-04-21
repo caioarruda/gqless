@@ -51,5 +51,8 @@
     "test": "test"
   },
   "keywords": [],
-  "license": "ISC"
+  "license": "ISC",
+  "publishConfig": {
+    "@c2atec:registry": " https://registry.npmjs.org"
+  }
 }

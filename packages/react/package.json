@@ -61,5 +61,8 @@
       "path": "dist/gqless-react.esm.js",
       "limit": "10 KB"
     }
-  ]
+  ],
+  "publishConfig": {
+    "@c2atec:registry": " https://registry.npmjs.org"
+  }
 }

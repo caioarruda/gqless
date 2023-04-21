@@ -96,5 +96,8 @@
   "directories": {
     "test": "test"
   },
-  "keywords": []
+  "keywords": [],
+  "publishConfig": {
+    "@c2atec:registry": " https://registry.npmjs.org"
+  }
 }

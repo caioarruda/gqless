@@ -60,5 +60,8 @@
       "path": "dist/test-utils.esm.js",
       "limit": "10 KB"
     }
-  ]
+  ],
+  "publishConfig": {
+    "@c2atec:registry": " https://registry.npmjs.org"
+  }
 }

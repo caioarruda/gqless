@@ -1,6 +1,6 @@
 {
   "name": "@gqless-transport-ws/react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "## Visit [https://c2atec.com/react/fetching-data](https://c2atec.com/react/fetching-data)",
   "main": "jest.config.js",
   "directories": {

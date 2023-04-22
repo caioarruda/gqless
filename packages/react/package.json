@@ -1,13 +1,30 @@
 {
   "name": "@gqless-transport-ws/react",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "## Visit [https://c2atec.com/react/fetching-data](https://c2atec.com/react/fetching-data)",
-  "main": "jest.config.js",
-  "directories": {
-    "test": "test"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gqless/gqless.git"
   },
+  "license": "MIT",
+  "author": "GQless <opensource@gqless.com>",
+  "main": "dist/index.js",
+  "module": "dist/gqless-react.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "analyze": "size-limit --why",
+    "build": "build gqless-react",
+    "prepare": "build gqless-react",
+    "postpublish": "gh-release",
+    "size": "size-limit",
+    "start": "watch gqless-react",
+    "start:with:example": "watch gqless-react --onSuccess \"pnpm -r --filter react-example dev\"",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "react-ssr-prepass": "^1.4.0"
@@ -61,8 +78,5 @@
       "path": "dist/gqless-react.esm.js",
       "limit": "10 KB"
     }
-  ],
-  "publishConfig": {
-    "@c2atec:registry": " https://registry.npmjs.org"
-  }
+  ]
 }

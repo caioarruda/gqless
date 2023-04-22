@@ -158,12 +158,11 @@ export class Client {
       }
     };
 
-    this.socket.onclose = (event) => {
-      console.log(event)
+    this.socket.onclose = () => {
       if (!this.closedByUser) {
-        //this.close(this.tryReconnect, false);
+        this.close(this.tryReconnect, false);
       }
-      //readyPromise.resolve(false);
+      readyPromise.resolve(false);
     };
 
     this.socket.onerror = () => { };

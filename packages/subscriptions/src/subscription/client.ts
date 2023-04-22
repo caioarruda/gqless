@@ -135,7 +135,7 @@ export class Client {
   connect() {
     if (this.socket !== null) return;
 
-    this.socket = new WebSocket(this.uri, [GRAPHQL_TS_WS], {
+    this.socket = new WebSocket(this.uri, {
       headers: this.headers,
     });
     const readyPromise = (this.socketReady = createDeferredPromise());
@@ -158,11 +158,12 @@ export class Client {
       }
     };
 
-    this.socket.onclose = () => {
+    this.socket.onclose = (event) => {
+      console.log(event)
       if (!this.closedByUser) {
-        this.close(this.tryReconnect, false);
+        //this.close(this.tryReconnect, false);
       }
-      readyPromise.resolve(false);
+      //readyPromise.resolve(false);
     };
 
     this.socket.onerror = () => { };

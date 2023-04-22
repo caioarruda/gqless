@@ -14,7 +14,7 @@ import {
   GQL_ERROR,
   GQL_START,
   GQL_STOP,
-  // GRAPHQL_TS_WS,
+  GRAPHQL_TS_WS,
 } from './protocol';
 
 export type OperationHandlerPayload = GQLResponse | 'start' | 'complete';
@@ -135,7 +135,7 @@ export class Client {
   connect() {
     if (this.socket !== null) return;
 
-    this.socket = new WebSocket(this.uri, {
+    this.socket = new WebSocket(this.uri, [GRAPHQL_TS_WS], {
       headers: this.headers,
     });
     const readyPromise = (this.socketReady = createDeferredPromise());

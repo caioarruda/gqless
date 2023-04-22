@@ -14,7 +14,7 @@ import {
   GQL_ERROR,
   GQL_START,
   GQL_STOP,
-  GRAPHQL_TS_WS,
+  // GRAPHQL_TS_WS,
 } from './protocol';
 
 export type OperationHandlerPayload = GQLResponse | 'start' | 'complete';

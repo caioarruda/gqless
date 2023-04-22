@@ -45,7 +45,7 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.10.2",
     "@types/mkdirp": "^1.0.1",
-    "build-utils": "workspace:*",
+    "@gqless-transport-ws/build-utils": "workspace:*",
     "graphql": "^15.5.0",
     "open-cli": "^6.0.1",
     "rimraf": "^3.0.2",

@@ -1,5 +1,5 @@
 {
-  "name": "build-utils",
+  "name": "@gqless-transport-ws/build-utils",
   "version": "1.0.0",
   "private": true,
   "type": "module",

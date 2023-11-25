@@ -814,7 +814,7 @@ export async function generate(
 
   const queryFetcher = `
     ${isJavascriptOutput
-      ? typeDoc('import("gqless").QueryFetcher') + 'const queryFetcher'
+      ? typeDoc('import("@gqless-transport-ws/gqless").QueryFetcher') + 'const queryFetcher'
       : 'const queryFetcher : QueryFetcher'
     } = async function (query, variables) {
         // Modify "${endpoint}" if needed
@@ -842,10 +842,10 @@ export async function generate(
 /**
  * GQLESS AUTO-GENERATED CODE: PLEASE DO NOT MODIFY MANUALLY
  */
-${hasUnions ? 'import { SchemaUnionsKey } from "gqless";' : ''}
+${hasUnions ? 'import { SchemaUnionsKey } from "@gqless-transport-ws/gqless";' : ''}
 
 ${typeDoc(
-    'import("gqless").ScalarsEnumsHash'
+    'import("@gqless-transport-ws/gqless").ScalarsEnumsHash'
   )}export const scalarsEnumsHash = ${JSON.stringify(scalarsEnumsHash)};
 
 export const generatedSchema = {${Object.entries(generatedSchema).reduceRight(
@@ -863,12 +863,12 @@ export const generatedSchema = {${Object.entries(generatedSchema).reduceRight(
  */
   ${preImport}
 
-  ${hasUnions ? 'import { SchemaUnionsKey } from "gqless";' : ''}
+  ${hasUnions ? 'import { SchemaUnionsKey } from "@gqless-transport-ws/gqless";' : ''}
 
   ${await codegenResultPromise}
 
   export${isJavascriptOutput ? ' declare' : ''
-    } const scalarsEnumsHash: import("gqless").ScalarsEnumsHash${isJavascriptOutput ? ';' : ` = ${JSON.stringify(scalarsEnumsHash)};`
+    } const scalarsEnumsHash: import("@gqless-transport-ws/gqless").ScalarsEnumsHash${isJavascriptOutput ? ';' : ` = ${JSON.stringify(scalarsEnumsHash)};`
     }
   export${isJavascriptOutput ? ' declare' : ''} const generatedSchema ${isJavascriptOutput ? ':' : '='
     } {${Object.entries(generatedSchema).reduceRight(
@@ -952,7 +952,7 @@ export const generatedSchema = {${Object.entries(generatedSchema).reduceRight(
       : ''
     }
   import { createClient${isJavascriptOutput ? '' : ', QueryFetcher'
-    } } from "gqless";
+    } } from "@gqless-transport-ws/gqless";
   import { generatedSchema, scalarsEnumsHash${isJavascriptOutput
       ? ''
       : ', GeneratedSchema, SchemaObjectTypes, SchemaObjectTypesNames'
@@ -978,7 +978,7 @@ export const generatedSchema = {${Object.entries(generatedSchema).reduceRight(
 
   ${isJavascriptOutput
       ? `${typeDoc(
-        'import("gqless").GQlessClient<import("./schema.generated").GeneratedSchema>'
+        'import("@gqless-transport-ws/gqless").GQlessClient<import("./schema.generated").GeneratedSchema>'
       )}export const client = createClient({
         schema: generatedSchema,
         scalarsEnumsHash, 
